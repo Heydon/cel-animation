@@ -56,9 +56,9 @@ In this example, there are 12 frames, the frame rate is 0.1 frames per second (f
 
 ## Demo
 
-I've created [a little demo](http://heydonworks.com/frame-animation-demos/stamp-dance.png) using one inline SVG incorporating three concurrent animations, all using the `frame-animation` `@mixin`. The SVG was created in Inkscape, and&mdash;with the frames placed on top of each other in their groups&mdash; looks like this when first created:
+I've created [a little demo](http://heydonworks.com/frame-animation-demos/stamp-dance.html) using one inline SVG incorporating three concurrent animations, all using the `frame-animation` `@mixin`. The SVG was created in Inkscape, and&mdash;with the frames placed on top of each other in their groups&mdash; looks like this when first created:
 
-![Aggressive dancer](file:///home/heydon/Dropbox/smash_talk/stamping.png)
+![Aggressive dancer](http://heydonworks.com/frame-animation-demos/stamp-dance.png)
 
 The Sass that takes this SVG and its frame groups, turning them into the intended animation, is like this:
 

@@ -1,0 +1,66 @@
+@mixin frame-animation($framecount, $framerate: 0.25, $alternate: true, $iterations: infinite) {
+  
+  // It operates on its child "frames"
+  > * {
+    
+    // set to invisible to start with
+    opacity: 0;
+    
+    // you get the overall animation duration by multiplying
+    // the number of frames by the frame rate (seconds) 
+    animation-duration: $framecount * $framerate + s;
+    
+    // set alternating direction if true (which is default)
+    @if $alternate {
+      animation-direction: alternate;
+    }
+
+    // default is infinite
+    animation-iteration-count: $iterations;
+
+    // if alternating direction is true (above) and
+    // iterations are not infinite, double the iterations
+    // to treat a back-AND-forth as one iteration
+    @if $iterations != infinite {
+      @if $alternate {
+        $iterations: $iterations * 2;
+      }
+    }
+
+    // Hard show/hide (no fading)
+    animation-timing-function: steps(1);
+
+  }
+
+  // the fraction of 1 for which each frame is visible
+  // eg. 0.333 if there are 3 frames
+  $framefraction: 100 / $framecount;
+  
+  @for $i from 1 through $framecount {
+
+    // get animation name by removing
+    // "." prefix from class selector
+    $name: str-slice(#{&}, 2);
+
+    // define where each frame first appears
+    $start: ($framefraction * $i) - $framefraction;
+  
+    // generate dynamic keyframes declaration
+    // based on safe class name + iteration number
+    @keyframes #{$name}-#{$i} {
+      #{$start + %} {
+        opacity: 1;
+      }
+      #{($start + $framefraction) + %} {
+        opacity: 0;
+      }
+    }
+
+    // assign animation to each child in turn
+    > :nth-child(#{$i}) {
+      animation-name: #{$name}-#{$i};
+    }
+
+  }
+  
+}

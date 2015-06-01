@@ -46,9 +46,11 @@ Only the `$framecount` parameter is required. The others, should you wish to use
 
 ### More complex example
 
+```
 .animation-name {
 	@include frame-animation(12, 0.1, false, 2);
 }
+```
 
 In this example, there are 12 frames, the frame rate is 0.1 frames per second (fps) and the animation direction does not alternate. It iterates twice, then stops.
 

@@ -1,5 +1,5 @@
 # Frame Based Animation
-A Sass @mixin for creating traditional frame-based animations, especially with SVG. The @mixin iterates over sibling elements, making them frames in an animated sequence.
+A Sass @mixin for creating traditional frame-based animations, especially with SVG. The @mixin iterates over sibling elements, making them frames in an animated sequence. Why? Because gifs are too weighty and boring and they don't scale and nobody knows how to pronounce "gif".
 
 ## Include in your project
 
@@ -11,7 +11,7 @@ A Sass @mixin for creating traditional frame-based animations, especially with S
 
 First you need to choose a (class) name for your animation and include the "frame" elements within it. These can be any type of SVG or HTML elements. You should put them in the order you want them animated.
 
-In the following example, we are using the generic "animation-name" class on an SVG `<g>` element and our frames are `<path>` elements.
+In the following code, we are using the generic "animation-name" class on an SVG `<g>` element and our frames are `<path>` elements.
 
 ```
 <g class="animation-name">
@@ -24,7 +24,7 @@ In the following example, we are using the generic "animation-name" class on an 
 
 ### Basic example
 
-In the following basic example, we are including the only mandatory parameter, `$framecount`, which should always be equal to the number of frame elements - in this case, three (see above).
+In the this basic example, we are including the only mandatory parameter, `$framecount`, which should always be equal to the number of frame elements. In this case it's three (see above).
 
 ```
 .animation-name {
@@ -40,7 +40,7 @@ This will create a frame-based animation that shows each frame in order, then in
 Only the `$framecount` parameter is required. The others, should you wish to use them, should be included in the order they are below.
 
 * `$framecount` is the number of frames, which must match the number of child elements (*integer*)
-* `$framerate` is the duration of each frame's appearance. Eg. 0.25 (the default) means 0.25 frames per second (*float*)
+* `$framerate` is the duration of each frame's appearance. Eg. 0.25 (the default) means 0.25 frames per second (fps) (*float*)
 * `$alternate` is whether the direction of the animation alternates, making the animation turn back on itself (*boolean, true by default*)
 * `$iterations` is the number of times the animation happens, based on `animation-iteration-count` (*integer, but "infinite" by default*)
 
@@ -54,3 +54,210 @@ Only the `$framecount` parameter is required. The others, should you wish to use
 
 In this example, there are 12 frames, the frame rate is 0.1 frames per second (fps) and the animation direction does not alternate. It iterates twice, then stops.
 
+## Demo
+
+I've created [a little demo](http://heydonworks.com/frame-animation-demos/stamp-dance.png) using one inline SVG incorporating three concurrent animations, all using the `frame-animation` `@mixin`. The SVG was created in Inkscape, and&mdash;with the frames placed on top of each other in their groups&mdash; looks like this when first created:
+
+![Aggressive dancer](file:///home/heydon/Dropbox/smash_talk/stamping.png)
+
+The Sass that takes this SVG and its frame groups, turning them into the intended animation, is like this:
+
+```
+.arms {
+  @include frame-animation(3, 0.1);
+}
+
+.leg {
+ @include frame-animation(3, 0.15); 
+}
+
+.eyebrows {
+  @include frame-animation(6, 0.12); 
+}
+```
+
+And the generated CSS looks like this:
+
+```
+.arms > * {
+  opacity: 0;
+  animation-duration: 0.3s;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  animation-timing-function: steps(1);
+}
+
+@keyframes arms-1 {
+  0% {
+    opacity: 1;
+  }
+  33.33333% {
+    opacity: 0;
+  }
+}
+
+.arms > :nth-child(1) {
+  animation-name: arms-1;
+}
+
+@keyframes arms-2 {
+  33.33333% {
+    opacity: 1;
+  }
+  66.66667% {
+    opacity: 0;
+  }
+}
+
+.arms > :nth-child(2) {
+  animation-name: arms-2;
+}
+
+@keyframes arms-3 {
+  66.66667% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.arms > :nth-child(3) {
+  animation-name: arms-3;
+}
+
+.leg > * {
+  opacity: 0;
+  animation-duration: 0.45s;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  animation-timing-function: steps(1);
+}
+
+@keyframes leg-1 {
+  0% {
+    opacity: 1;
+  }
+  33.33333% {
+    opacity: 0;
+  }
+}
+
+.leg > :nth-child(1) {
+  animation-name: leg-1;
+}
+
+@keyframes leg-2 {
+  33.33333% {
+    opacity: 1;
+  }
+  66.66667% {
+    opacity: 0;
+  }
+}
+
+.leg > :nth-child(2) {
+  animation-name: leg-2;
+}
+
+@keyframes leg-3 {
+  66.66667% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.leg > :nth-child(3) {
+  animation-name: leg-3;
+}
+
+.eyebrows > * {
+  opacity: 0;
+  animation-duration: 0.72s;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  animation-timing-function: steps(1);
+}
+
+@keyframes eyebrows-1 {
+  0% {
+    opacity: 1;
+  }
+  16.66667% {
+    opacity: 0;
+  }
+}
+
+.eyebrows > :nth-child(1) {
+  animation-name: eyebrows-1;
+}
+
+@keyframes eyebrows-2 {
+  16.66667% {
+    opacity: 1;
+  }
+  33.33333% {
+    opacity: 0;
+  }
+}
+
+.eyebrows > :nth-child(2) {
+  animation-name: eyebrows-2;
+}
+
+@keyframes eyebrows-3 {
+  33.33333% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.eyebrows > :nth-child(3) {
+  animation-name: eyebrows-3;
+}
+
+@keyframes eyebrows-4 {
+  50% {
+    opacity: 1;
+  }
+  66.66667% {
+    opacity: 0;
+  }
+}
+
+.eyebrows > :nth-child(4) {
+  animation-name: eyebrows-4;
+}
+
+@keyframes eyebrows-5 {
+  66.66667% {
+    opacity: 1;
+  }
+  83.33333% {
+    opacity: 0;
+  }
+}
+
+.eyebrows > :nth-child(5) {
+  animation-name: eyebrows-5;
+}
+
+@keyframes eyebrows-6 {
+  83.33333% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.eyebrows > :nth-child(6) {
+  animation-name: eyebrows-6;
+}
+```
+
+Note the use of identical drawings in 4 of the 6 eyebrow frames, to create the illusion of a pause in animation.

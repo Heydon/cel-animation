@@ -1,6 +1,14 @@
 # Frame Based Animation
 A Sass @mixin for creating traditional frame-based animations, especially with SVG. Think gifs, but scalable and with more control over combining animations together.
 
+## Install
+
+Either simply download the `_frame-based-animation.scss` partial from this repo' or use Bower as below:
+
+```
+bower install --save-dev frame-based-animation
+```
+
 ## Include in your project
 
 `@include 'frame-based-animation'`

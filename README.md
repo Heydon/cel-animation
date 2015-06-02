@@ -1,5 +1,5 @@
 # Frame Based Animation
-A Sass @mixin for creating traditional frame-based animations, especially with SVG. The @mixin iterates over sibling elements, making them frames in an animated sequence. Why? Because gifs are too weighty and boring and they don't scale and nobody knows how to pronounce "gif".
+A Sass @mixin for creating traditional frame-based animations, especially with SVG. Think gifs, but scalable and with more control over combining animations together.
 
 ## Include in your project
 
@@ -9,7 +9,7 @@ A Sass @mixin for creating traditional frame-based animations, especially with S
 
 ### The markup
 
-First you need to choose a (class) name for your animation and include the "frame" elements within it. These can be any type of SVG or HTML elements. You should put them in the order you want them animated.
+First you need to choose a (class) name for your animation and include the "frame" elements within this named container. These can be any type of SVG or HTML elements. You should put them in the order you want them animated.
 
 In the following code, we are using the generic "animation-name" class on an SVG `<g>` element and our frames are `<path>` elements.
 
@@ -24,7 +24,7 @@ In the following code, we are using the generic "animation-name" class on an SVG
 
 ### Basic example
 
-In the this basic example, we are including the only mandatory parameter, `$framecount`, which should always be equal to the number of frame elements. In this case it's three (see above).
+In the this basic example, we are including the only mandatory parameter, `$framecount`, which should always be equal to the number of frame elements. In this case it's three (to match the number of path elements above).
 
 ```
 .animation-name {
@@ -71,17 +71,17 @@ The Sass that takes this SVG and its frame groups, turning them into the intende
  @include frame-animation(3, 0.15); 
 }
 
-.eyebrows {
-  @include frame-animation(6, 0.12); 
+.eyes {
+  @include frame-animation(5, 0.12); 
 }
 ```
 
-And the generated CSS looks like this:
+Note that the different frame rates for each separate animation make for a more complex composite animation, not possible with gifs which are just _an_ animation. The generated CSS looks like this:
 
 ```
 .arms > * {
   opacity: 0;
-  animation-duration: 0.3s;
+  animation-duration: 0.27s;
   animation-direction: alternate;
   animation-iteration-count: infinite;
   animation-timing-function: steps(1);
@@ -173,81 +173,68 @@ And the generated CSS looks like this:
   animation-name: leg-3;
 }
 
-.eyebrows > * {
+.eyes > * {
   opacity: 0;
-  animation-duration: 0.72s;
+  animation-duration: 0.6s;
   animation-direction: alternate;
   animation-iteration-count: infinite;
   animation-timing-function: steps(1);
 }
 
-@keyframes eyebrows-1 {
+@keyframes eyes-1 {
   0% {
     opacity: 1;
   }
-  16.66667% {
+  20% {
     opacity: 0;
   }
 }
 
-.eyebrows > :nth-child(1) {
-  animation-name: eyebrows-1;
+.eyes > :nth-child(1) {
+  animation-name: eyes-1;
 }
 
-@keyframes eyebrows-2 {
-  16.66667% {
+@keyframes eyes-2 {
+  20% {
     opacity: 1;
   }
-  33.33333% {
+  40% {
     opacity: 0;
   }
 }
 
-.eyebrows > :nth-child(2) {
-  animation-name: eyebrows-2;
+.eyes > :nth-child(2) {
+  animation-name: eyes-2;
 }
 
-@keyframes eyebrows-3 {
-  33.33333% {
+@keyframes eyes-3 {
+  40% {
     opacity: 1;
   }
-  50% {
+  60% {
     opacity: 0;
   }
 }
 
-.eyebrows > :nth-child(3) {
-  animation-name: eyebrows-3;
+.eyes > :nth-child(3) {
+  animation-name: eyes-3;
 }
 
-@keyframes eyebrows-4 {
-  50% {
+@keyframes eyes-4 {
+  60% {
     opacity: 1;
   }
-  66.66667% {
+  80% {
     opacity: 0;
   }
 }
 
-.eyebrows > :nth-child(4) {
-  animation-name: eyebrows-4;
+.eyes > :nth-child(4) {
+  animation-name: eyes-4;
 }
 
-@keyframes eyebrows-5 {
-  66.66667% {
-    opacity: 1;
-  }
-  83.33333% {
-    opacity: 0;
-  }
-}
-
-.eyebrows > :nth-child(5) {
-  animation-name: eyebrows-5;
-}
-
-@keyframes eyebrows-6 {
-  83.33333% {
+@keyframes eyes-5 {
+  80% {
     opacity: 1;
   }
   100% {
@@ -255,9 +242,9 @@ And the generated CSS looks like this:
   }
 }
 
-.eyebrows > :nth-child(6) {
-  animation-name: eyebrows-6;
+.eyes > :nth-child(5) {
+  animation-name: eyes-5;
 }
 ```
 
-Note the use of identical drawings in 4 of the 6 eyebrow frames, to create the illusion of a pause in animation.
+Note the use of identical drawings in 2 of the 5 `.eyes` frames, to create the illusion of a small pause in animation.

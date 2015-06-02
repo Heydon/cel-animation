@@ -1,0 +1,7 @@
+{
+    "name": "frame-based-animation",
+    "version": "0.1.0",
+    "main": "_frame-based-animation.scss",
+    "author": "Heydon Pickering",
+    "ignore": ["*","!_frame-based-animation.scss"]
+}

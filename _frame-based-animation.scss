@@ -48,10 +48,10 @@
     // generate dynamic keyframes declaration
     // based on safe class name + iteration number
     @keyframes #{$name}-#{$i} {
-      #{$start + %} {
+      #{$start + '%'} {
         opacity: 1;
       }
-      #{($start + $framefraction) + %} {
+      #{($start + $framefraction) + '%'} {
         opacity: 0;
       }
     }

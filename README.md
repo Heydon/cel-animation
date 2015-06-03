@@ -255,4 +255,4 @@ Note that the different frame rates for each separate animation make for a more 
 }
 ```
 
-Note the use of identical drawings in 2 of the 5 `.eyes` frames, to create the illusion of a small pause in animation.
+Note the use of identical drawings in 3 of the 5 `.eyes` frames, to create the illusion of a small pause in animation.

@@ -8,7 +8,7 @@
     
     // you get the overall animation duration by multiplying
     // the number of frames by the frame rate (seconds) 
-    animation-duration: $framecount * $framerate + s;
+    animation-duration: $framecount * $framerate * 1s;
     
     // set alternating direction if true (which is default)
     @if $alternate {
@@ -48,10 +48,10 @@
     // generate dynamic keyframes declaration
     // based on safe class name + iteration number
     @keyframes #{$name}-#{$i} {
-      #{$start + '%'} {
+      #{$start * 1%} {
         opacity: 1;
       }
-      #{($start + $framefraction) + '%'} {
+      #{($start + $framefraction) * 1%} {
         opacity: 0;
       }
     }

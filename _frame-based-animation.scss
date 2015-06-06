@@ -3,8 +3,8 @@
 ///
 /// @author Heydon Pickering
 ///
-/// @param {Number} $framecount - Number of frames in animation which must match the number of child elements
-/// @param {Float} $framerate [0.25] - Duration of each frame's appearance
+/// @param {Number} $frame-count - Number of frames in animation which must match the number of child elements
+/// @param {Float} $frame-rate [0.25] - Duration of each frame's appearance
 /// @param {Bool} $alternate [true] - Whether the direction of the animation alternates, making the animation turn back on itself
 /// @param {Number | infinite} $iterations [infinite] - Number of times the animation happens, based on `animation-iteration-count`
 ///
@@ -18,7 +18,8 @@
 ///     @include frame-animation(12, 0.1, false, 2);
 ///   }
 ///
-@mixin frame-animation($framecount, $framerate: 0.25, $alternate: true, $iterations: infinite) {
+
+@mixin frame-animation($frame-count, $frame-rate: 0.25, $alternate: true, $iterations: infinite) {
   
   // It operates on its child "frames"
   > * {
@@ -28,7 +29,7 @@
     
     // you get the overall animation duration by multiplying
     // the number of frames by the frame rate (seconds) 
-    animation-duration: $framecount * $framerate * 1s;
+    animation-duration: $frame-count * $frame-rate * 1s;
     
     // set alternating direction if true (which is default)
     @if $alternate {
@@ -52,16 +53,16 @@
 
   // the fraction of 1 for which each frame is visible
   // eg. 0.333 if there are 3 frames
-  $framefraction: 100 / $framecount;
+  $frame-fraction: 100 / $frame-count;
   
-  @for $i from 1 through $framecount {
+  @for $i from 1 through $frame-count {
 
     // get animation name by removing
     // "." prefix from class selector
     $name: str-slice(#{&}, 2);
 
     // define where each frame first appears
-    $start: ($framefraction * $i) - $framefraction;
+    $start: ($frame-fraction * $i) - $frame-fraction;
   
     // generate dynamic keyframes declaration
     // based on safe class name + iteration number
@@ -69,7 +70,7 @@
       #{$start * 1%} {
         opacity: 1;
       }
-      #{($start + $framefraction) * 1%} {
+      #{($start + $frame-fraction) * 1%} {
         opacity: 0;
       }
     }

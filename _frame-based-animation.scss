@@ -21,10 +21,8 @@
     // if alternating direction is true (above) and
     // iterations are not infinite, double the iterations
     // to treat a back-AND-forth as one iteration
-    @if $iterations != infinite {
-      @if $alternate {
-        $iterations: $iterations * 2;
-      }
+    @if $iterations != infinite and $alternate {
+      $iterations: $iterations * 2;
     }
 
     // Hard show/hide (no fading)

@@ -63,3 +63,19 @@ Only the `$cells` parameter is required. The others, should you wish to use them
 ```
 
 In this example, there are four cells representing four child elements in the `animation-name-2` container. The first cell is visible for three frames at the beginning of the animation, the second for two frames after that and so on. The frame rate is 0.1 seconds and the animation alternates (reverses back on itself) twice before stopping.
+
+## Demo
+
+![Animated Shark](http://heydonworks.com/frame-animation-demos/sharky.svg)
+
+My shark SVG is animated using two frame animations on SVG `<g>` elements, set out as follows. Note that the `.eyes` animation has the open eye set at 6 frames. Both animations alernate.
+
+```
+.tail {
+  @include frame-animation((1 1 1), 0.2, true);
+}
+
+.eyes {
+  @include frame-animation((6 1 1), 0.1, true);
+}
+```

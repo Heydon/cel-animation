@@ -3,9 +3,9 @@
 ///
 /// @author Heydon Pickering
 ///
-/// @param {List} $cells - A list of integers in the order of the animated elements. Each integer represents the duration the cell should appear
+/// @param {List} $cells - A list of integers representing "cells" in the order of the subject elements. Each integer represents the duration in frames for which the cell should be visible
 /// @param {Float} $frame-rate [0.25] - Duration of each frame's appearance
-/// @param {Bool} $alternate [true] - Whether the direction of the animation alternates, making the animation turn back on itself
+/// @param {Bool} $alternate [false] - Whether the direction of the animation alternates, making the animation turn back on itself
 /// @param {Number | infinite} $iterations [infinite] - Number of times the animation happens, based on `animation-iteration-count`
 ///
 /// @example scss - Basic example
@@ -19,11 +19,12 @@
 ///   }
 ///
 
-@mixin frame-animation($cells, $frame-rate: 0.25, $alternate: true, $iterations: infinite) {
+@mixin frame-animation($cells, $frame-rate: 0.25, $alternate: false, $iterations: infinite) {
   
-  // Get the total number of frames
+  // Init frame count
   $frame-count: 0;
-
+  
+  // Get the frame count
   @each $cell in $cells {
     $frame-count: $frame-count + $cell;
   }
@@ -62,13 +63,12 @@
   // eg. 0.333 if there are 3 frames
   $frame-fraction: 100 / $frame-count;
   
+  // iterate over each integer in $cells
   @for $i from 1 through length($cells) {
 
     // get animation name by removing
     // "." prefix from class selector
     $name: str-slice(#{&}, 2);
-
-    // define where each frame first appears
 
     // init start variable
     $start: 0;
@@ -76,17 +76,20 @@
     // init count of frames before
     $frames-before: 0;
     
+    // get the number of frames that have elapsed before
+    // the current cell appears
     @for $cell from 1 through ($i - 1) {
       @if ($i > 1) {
         $frames-before: $frames-before + nth($cells, $cell);
       }
     }
-
+    
+    // define start and end of animation
     $start: $frames-before * $frame-fraction;
     $end: $start + ($frame-fraction * nth($cells, $i));
   
     // generate dynamic keyframes declaration
-    // based on safe class name + iteration number
+    // based on sanitized class name + iteration number
     @keyframes #{$name}-#{$i} {
       #{$start * 1%} {
         opacity: 1;

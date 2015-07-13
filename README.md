@@ -17,7 +17,7 @@ bower install --save-dev frame-based-animation
 
 ### The markup
 
-First you need to choose a (class) name for your animation and include the "frame" elements within this named container. These can be any type of SVG or HTML elements. You should put them in the order you want them animated.
+First you need to choose a (class) name for your animation and include the "cell" elements (the independent pictures for the animation) within this named container. These can be any type of SVG or HTML elements. You should put them in the order you want them animated.
 
 In the following code, we are using the generic "animation-name" class on an SVG `<g>` element and our frames are `<path>` elements.
 
@@ -70,7 +70,7 @@ In this example, there are four cells representing four child elements in the `a
 
 **Note: In some browsers, you'll need to [go to the actual SVG](http://heydonworks.com/frame-animation-demos/sharky.svg) to see it animate. It is therefore recommended to use this animation technique with inline SVG, not `<img>` elements.**
 
-My shark SVG is animated using two frame animations on SVG `<g>` elements, set out as follows. Note that the `.eyes` animation has the open eye set at 6 frames. Both animations alernate.
+My shark SVG is animated using two frame animations on SVG `<g>` elements, set out as follows. Note that the `.eyes` animation has the open eye set at 6 frames. Both animations alternate.
 
 ```
 .tail {

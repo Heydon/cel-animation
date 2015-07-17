@@ -1,5 +1,5 @@
 # Frame Based Animation
-A Sass @mixin for creating traditional frame-by-frame animations, especially with SVG. Think gifs, but scalable and with more control over combining animations together.
+A Sass @mixin for creating traditional frame-by-frame animations using "cel" elements, especially with SVG. Think gifs, but scalable and with more control over combining animations together.
 
 ## Install
 
@@ -17,7 +17,7 @@ bower install --save-dev frame-based-animation
 
 ### The markup
 
-First you need to choose a (class) name for your animation and include the "cell" elements (the independent pictures for the animation) within this named container. These can be any type of SVG or HTML elements. You should put them in the order you want them animated.
+First you need to choose a (class) name for your animation and include the "cel" elements (the independent pictures for the animation) within this named container. These can be any type of SVG or HTML elements. You should put them in the order you want them animated.
 
 In the following code, we are using the generic "animation-name" class on an SVG `<g>` element and our frames are `<path>` elements.
 
@@ -32,7 +32,7 @@ In the following code, we are using the generic "animation-name" class on an SVG
 
 ### Basic example
 
-In the this basic example, we are including the only mandatory parameter, `$cells`, a list which defines the frame duration for each "cell" element in the `.animation-name` example group.
+In the this basic example, we are including the only mandatory parameter, `$cels`, a list which defines the frame duration for each "cel" element in the `.animation-name` example group.
 
 ```
 .animation-name {
@@ -41,15 +41,15 @@ In the this basic example, we are including the only mandatory parameter, `$cell
 
 ```
 
-In this animation there are three cells and each cell is visible for just one frame. It is, therefore, `0.75s` long at the default `0.25s` frame rate.
+In this animation there are three cels and each cel is visible for just one frame. It is, therefore, `0.75s` long at the default `0.25s` frame rate.
 
 (**Note:** The hard switch between frame visibility is made possible my using the `steps(1)` `animation-timing-function`.)
 
 ### All parameters
 
-Only the `$cells` parameter is required. The others, should you wish to use them, should be included in the order they are below.
+Only the `$cels` parameter is required. The others, should you wish to use them, should be included in the order they are below.
 
-* `$cells` The list of cells, each an integer to represent how many frames that cell should be vissible for (*list*)
+* `$cels` The list of cels, each an integer to represent how many frames that cel should be vissible for (*list*)
 * `$frame-rate` is the duration of each frame's appearance. Eg. 0.25 (the default) means 0.25 frames per second (fps) (*float*)
 * `$alternate` is whether the direction of the animation alternates, making the animation turn back on itself (*boolean, false by default*)
 * `$iterations` is the number of times the animation happens, based on `animation-iteration-count` (*integer, but "infinite" by default*)
@@ -62,7 +62,7 @@ Only the `$cells` parameter is required. The others, should you wish to use them
 }
 ```
 
-In this example, there are four cells representing four child elements in the `animation-name-2` container. The first cell is visible for three frames at the beginning of the animation, the second for two frames after that and so on. The frame rate is 0.1 seconds and the animation alternates (reverses back on itself) twice before stopping.
+In this example, there are four cels representing four child elements in the `animation-name-2` container. The first cel is visible for three frames at the beginning of the animation, the second for two frames after that and so on. The frame rate is 0.1 seconds and the animation alternates (reverses back on itself) twice before stopping.
 
 ## Demo
 

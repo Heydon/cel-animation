@@ -68,7 +68,7 @@ In this example, there are four cells representing four child elements in the `a
 
 ![Animated Shark](http://heydonworks.com/frame-animation-demos/sharky.svg)
 
-**Note: In some browsers, you'll need to [go to the actual SVG](http://heydonworks.com/frame-animation-demos/sharky.svg) to see it animate. It is therefore recommended to use this animation technique with inline SVG, not `<img>` elements.**
+**Note: In some browsers, you'll need to [go to the actual SVG](http://heydonworks.com/frame-animation-demos/sharky.svg) to see this demo animate. This is because I've used the `<img/>` tag here, which doesn't always honor embedded CSS. To make it work in a real situation, either inline the SVG or include it using `<object>`. Thank you to Sara Soueidan for her advice here.**
 
 My shark SVG is animated using two frame animations on SVG `<g>` elements, set out as follows. Note that the `.eyes` animation has the open eye set at 6 frames. Both animations alternate.
 

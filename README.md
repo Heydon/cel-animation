@@ -78,6 +78,6 @@ My shark SVG is animated using two frame animations on SVG `<g>` elements, set o
 }
 
 .eyes {
-  @include cel-animation((6 1 1), 0.1, true);
+  @include cel-animation((6 1 1 1), 0.1, true);
 }
 ```

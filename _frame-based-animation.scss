@@ -10,16 +10,16 @@
 ///
 /// @example scss - Basic example: three cels appearing for one frame each
 ///   .animation-name {
-///     @include frame-animation((1 1 1));
+///     @include cel-animation((1 1 1));
 ///   }
 ///
 /// @example scss - Advanced example: 3 cels in a 6 frame animation, at a frame rate of 0.1 seconds. Each of the two iterations alternates (reverses back on itself)
 ///   .animation-name {
-///     @include frame-animation((3 1 2)), 0.1, true, 2);
+///     @include cel-animation((3 1 2)), 0.1, true, 2);
 ///   }
 ///
 
-@mixin frame-animation($cels, $frame-rate: 0.25, $alternate: false, $iterations: infinite) {
+@mixin cel-animation($cels, $frame-rate: 0.25, $alternate: false, $iterations: infinite) {
   
   // Init frame count
   $frame-count: 0;

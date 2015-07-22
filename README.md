@@ -1,17 +1,17 @@
-# Frame Based Animation
+# Cel Animation
 A Sass @mixin for creating traditional frame-by-frame animations using "cel" elements, especially with SVG. Think gifs, but scalable and with more control over combining animations together.
 
 ## Install
 
-Either simply download the `_frame-based-animation.scss` partial from this repo' or use Bower as below:
+Either simply download the `_cel-animation.scss` partial from this repo' or use Bower as below:
 
 ```
-bower install --save-dev frame-based-animation
+bower install --save-dev cel-animation
 ```
 
 ## Include in your project
 
-`@include 'frame-based-animation'`
+`@include 'cel-animation'`
 
 ## Usage
 
@@ -36,7 +36,7 @@ In the this basic example, we are including the only mandatory parameter, `$cels
 
 ```
 .animation-name {
-	@include frame-animation((1 1 1));
+	@include cel-animation((1 1 1));
 }
 
 ```
@@ -58,7 +58,7 @@ Only the `$cels` parameter is required. The others, should you wish to use them,
 
 ```
 .animation-name-2 {
-	@include frame-animation((3 2 3 1), 0.1, true, 2);
+	@include cel-animation((3 2 3 1), 0.1, true, 2);
 }
 ```
 
@@ -66,18 +66,18 @@ In this example, there are four cels representing four child elements in the `an
 
 ## Demo
 
-![Animated Shark](http://heydonworks.com/frame-animation-demos/sharky.svg)
+![Animated Shark](http://heydonworks.com/cel-animation-demos/sharky.svg)
 
-**Note: In some browsers, you'll need to [go to the actual SVG](http://heydonworks.com/frame-animation-demos/sharky.svg) to see this demo animate. This is because I've used the `<img/>` tag here, which doesn't always honor embedded CSS. To make it work in a real situation, either inline the SVG or include it using `<object>`. Thank you to Sara Soueidan for her advice here.**
+**Note: In some browsers, you'll need to [go to the actual SVG](http://heydonworks.com/cel-animation-demos/sharky.svg) to see this demo animate. This is because I've used the `<img/>` tag here, which doesn't always honor embedded CSS. To make it work in a real situation, either inline the SVG or include it using `<object>`. Thank you to Sara Soueidan for her advice here.**
 
 My shark SVG is animated using two frame animations on SVG `<g>` elements, set out as follows. Note that the `.eyes` animation has the open eye set at 6 frames. Both animations alternate.
 
 ```
 .tail {
-  @include frame-animation((1 1 1), 0.2, true);
+  @include cel-animation((1 1 1), 0.2, true);
 }
 
 .eyes {
-  @include frame-animation((6 1 1), 0.1, true);
+  @include cel-animation((6 1 1), 0.1, true);
 }
 ```

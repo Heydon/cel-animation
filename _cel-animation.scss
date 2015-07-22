@@ -1,0 +1,109 @@
+/// A Sass @mixin for creating traditional cel-based animations, especially with SVG. 
+/// Think gifs, but scalable and with more control over combining animations together.
+///
+/// @author Heydon Pickering
+///
+/// @param {List} $cels - A list of integers representing "cels" in the order of the subject elements. Each integer represents the duration in frames for which the cel should be visible
+/// @param {Float} $frame-rate [0.25] - Duration of each frame's appearance
+/// @param {Bool} $alternate [false] - Whether the direction of the animation alternates, making the animation turn back on itself
+/// @param {Number | infinite} $iterations [infinite] - Number of times the animation happens, based on `animation-iteration-count`
+///
+/// @example scss - Basic example: three cels appearing for one frame each
+///   .animation-name {
+///     @include cel-animation((1 1 1));
+///   }
+///
+/// @example scss - Advanced example: 3 cels in a 6 frame animation, at a frame rate of 0.1 seconds. Each of the two iterations alternates (reverses back on itself)
+///   .animation-name {
+///     @include cel-animation((3 1 2)), 0.1, true, 2);
+///   }
+///
+
+@mixin cel-animation($cels, $frame-rate: 0.25, $alternate: false, $iterations: infinite) {
+  
+  // Init frame count
+  $frame-count: 0;
+  
+  // Get the frame count
+  @each $cel in $cels {
+    $frame-count: $frame-count + $cel;
+  }
+  
+  // The mixin operates on its child "frames"
+  > * {
+    
+    // set to invisible to start with
+    opacity: 0;
+    
+    // you get the overall animation duration by multiplying
+    // the number of frames by the frame rate (seconds) 
+    animation-duration: $frame-count * $frame-rate * 1s;
+    
+    // set alternating direction if true (which is default)
+    @if $alternate {
+      animation-direction: alternate;
+    }
+
+    // default is infinite
+    animation-iteration-count: $iterations;
+
+    // if alternating direction is true (above) and
+    // iterations are not infinite, double the iterations
+    // to treat a back-AND-forth as one iteration
+    @if $iterations != infinite and $alternate {
+      $iterations: $iterations * 2;
+    }
+
+    // Hard show/hide (no fading)
+    animation-timing-function: steps(1);
+
+  }
+
+  // the fraction of 1 for which each frame is visible
+  // eg. 0.333 if there are 3 frames
+  $frame-fraction: 100 / $frame-count;
+  
+  // iterate over each integer in $cels
+  @for $i from 1 through length($cels) {
+
+    // get animation name by removing
+    // "." prefix from class selector
+    $name: str-slice(#{&}, 2);
+
+    // init start variable
+    $start: 0;
+    
+    // init count of frames before
+    $frames-before: 0;
+    
+    // get the number of frames that have elapsed before
+    // the current cel appears
+    @for $cel from 1 through ($i - 1) {
+      @if ($i > 1) {
+        $frames-before: $frames-before + nth($cels, $cel);
+      }
+    }
+    
+    // define start and end of animation
+    $start: $frames-before * $frame-fraction;
+    $end: $start + ($frame-fraction * nth($cels, $i));
+  
+    // generate dynamic keyframes declaration
+    // based on sanitized class name + iteration number
+    @keyframes #{$name}-#{$i} {
+      #{$start * 1%} {
+        opacity: 1;
+      }
+      #{$end * 1%} {
+        opacity: 0;
+      }
+    }
+
+    // assign animation to each cel (child elem) in turn
+    > :nth-child(#{$i}) {
+      animation-name: #{$name}-#{$i};
+    }
+
+  }
+  
+}

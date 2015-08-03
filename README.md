@@ -1,5 +1,5 @@
 # Cel Animation
-A Sass @mixin for creating traditional frame-by-frame animations using "cel" elements, especially with SVG. Think gifs, but scalable and with more control over combining animations together.
+A Sass @mixin for creating traditional frame-by-frame animations using "cel" elements, especially with SVG. Think gifs, but scalable and with more control over combining animations together in one picture.
 
 ## Install
 
@@ -19,7 +19,7 @@ bower install --save-dev cel-animation
 
 First you need to choose a (class) name for your animation and include the "cel" elements (the independent pictures for the animation) within this named container. These can be any type of SVG or HTML elements. You should put them in the order you want them animated.
 
-In the following code, we are using the generic "animation-name" class on an SVG `<g>` element and our frames are `<path>` elements.
+In the following code, we are using the generic "animation-name" class on an SVG `<g>` element and our cels are `<path>` elements.
 
 ```
 <g class="animation-name">

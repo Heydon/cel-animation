@@ -68,7 +68,7 @@ In this example, there are four cels representing four child elements in the `an
 
 ![Animated Shark](http://heydonworks.com/SVG_animations/sharky.svg)
 
-**Note: In some browsers, you'll need to [go to the actual SVG](http://heydonworks.com/cel-animation-demos/sharky.svg) to see this demo animate. This is because I've used the `<img/>` tag here, which doesn't always honor embedded CSS. To make it work in a real situation, either inline the SVG or include it using `<object>`. Thank you to Sara Soueidan for her advice here.**
+**Note: In some browsers, you'll need to [go to the actual SVG](http://heydonworks.com/SVG_animations/sharky.svg) to see this demo animate. This is because I've used the `<img/>` tag here, which doesn't always honor embedded CSS. To make it work in a real situation, either inline the SVG or include it using `<object>`. Thank you to Sara Soueidan for her advice here.**
 
 My shark SVG is animated using two frame animations on SVG `<g>` elements, set out as follows. Note that the `.eyes` animation has the open eye set at 6 frames. Both animations alternate.
 

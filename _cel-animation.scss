@@ -78,7 +78,7 @@
     
     // get the number of frames that have elapsed before
     // the current cel appears
-    @for $cel from 1 through ($i - 1) {
+    @for $cel from 1 to $i {
       @if ($i > 1) {
         $frames-before: $frames-before + nth($cels, $cel);
       }

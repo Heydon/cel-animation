@@ -66,9 +66,7 @@
   // iterate over each integer in $cels
   @for $i from 1 through length($cels) {
 
-    // get animation name by removing
-    // "." prefix from class selector
-    $name: str-slice(#{&}, 2);
+    $name: unique-id();
 
     // init start variable
     $start: 0;

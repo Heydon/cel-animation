@@ -88,7 +88,7 @@
   
     // generate dynamic keyframes declaration
     // based on sanitized class name + iteration number
-    @keyframes #{$name}-#{$i} {
+    @keyframes cel-#{$name} {
       #{$start * 1%} {
         opacity: 1;
       }

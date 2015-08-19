@@ -49,7 +49,7 @@ In this animation there are three cels and each cel is visible for just one fram
 
 Only the `$cels` parameter is required. The others, should you wish to use them, should be included in the order they are below.
 
-* `$cels` The list of cels, each an integer to represent how many frames that cel should be vissible for (*list*)
+* `$cels` The list of cels, each an integer to represent how many frames that cel should be visible for (*list*)
 * `$frame-rate` is the duration of each frame's appearance. Eg. 0.25 (the default) means 0.25 frames per second (fps) (*float*)
 * `$alternate` is whether the direction of the animation alternates, making the animation turn back on itself (*boolean, false by default*)
 * `$iterations` is the number of times the animation happens, based on `animation-iteration-count` (*integer, but "infinite" by default*)

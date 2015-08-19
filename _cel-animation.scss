@@ -99,7 +99,7 @@
 
     // assign animation to each cel (child elem) in turn
     > :nth-child(#{$i}) {
-      animation-name: #{$name}-#{$i};
+      animation-name: cel-#{$name};
     }
 
   }
